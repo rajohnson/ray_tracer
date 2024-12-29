@@ -14,9 +14,8 @@ def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) 
         for row in image:
             for pixel in row:
                 f.write(
-                    f"{int(pixel.r * max_intensity)} {int(pixel.g* max_intensity)} {int(pixel.b* max_intensity)} "
+                    f"{int(pixel.r * max_intensity)} {int(pixel.g* max_intensity)} {int(pixel.b* max_intensity)}\n"
                 )
-            f.write("\n")
 
 
 if __name__ == "__main__":
