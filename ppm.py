@@ -4,8 +4,12 @@ import tqdm
 RGB = collections.namedtuple("RGB", "r g b")
 
 
-# output a ppm file for a given image
 def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) -> None:
+    """
+    output a ppm file for a given image
+    :param filename: the name of the file to be created
+    :param image: the image to place into the file
+    """
     image_width = len(image[0])
     image_height = len(image)
 
