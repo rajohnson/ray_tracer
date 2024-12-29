@@ -1,4 +1,5 @@
 import collections
+import logging
 
 RGB = collections.namedtuple("RGB", "r g b")
 
@@ -11,14 +12,19 @@ def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) 
         f.write("P3\n")
         f.write(f"{image_width} {image_height}\n")
         f.write(f"{max_intensity}\n")
-        for row in image:
+        for row_num, row in enumerate(image):
             for pixel in row:
                 f.write(
                     f"{int(pixel.r * max_intensity)} {int(pixel.g* max_intensity)} {int(pixel.b* max_intensity)}\n"
                 )
+            logging.debug(f"Row written: {row_num}")
+        logging.debug(f"Image written to {filename}")
 
 
 if __name__ == "__main__":
+    # init logging
+    logging.basicConfig(level=logging.DEBUG)
+
     img_width = 256
     img_height = 256
 
