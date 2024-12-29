@@ -19,8 +19,11 @@ def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) 
 
 
 if __name__ == "__main__":
+    img_width = 256
+    img_height = 256
+
     image = [
-        [RGB(1.0, 0, 0), RGB(0, 1.0, 0), RGB(0, 0, 1.0)],
-        [RGB(1.0, 1.0, 1.0), RGB(0, 0, 0), RGB(0.5, 0.5, 0.5)],
+        [RGB(r / img_width, g / img_height, 0) for r in range(img_width)]
+        for g in range(img_height)
     ]
     output_ppm("output.ppm", image)
