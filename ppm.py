@@ -1,10 +1,11 @@
 import collections
 import tqdm
+import color
 
-RGB = collections.namedtuple("RGB", "r g b")
 
-
-def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) -> None:
+def output_ppm(
+    filename: str, image: list[list[color.Color]], max_intensity: int = 255
+) -> None:
     """
     output a ppm file for a given image
     :param filename: the name of the file to be created
@@ -19,9 +20,7 @@ def output_ppm(filename: str, image: list[list[RGB]], max_intensity: int = 255) 
         f.write(f"{max_intensity}\n")
         for row in tqdm.tqdm(image):
             for pixel in row:
-                f.write(
-                    f"{int(pixel.r * max_intensity)} {int(pixel.g* max_intensity)} {int(pixel.b* max_intensity)}\n"
-                )
+                f.write(f"{pixel}\n")
 
 
 if __name__ == "__main__":
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     img_height = 256
 
     image = [
-        [RGB(r / img_width, g / img_height, 0) for r in range(img_width)]
+        [color.Color(r / img_width, g / img_height, 0) for r in range(img_width)]
         for g in range(img_height)
     ]
     output_ppm("output.ppm", image)
